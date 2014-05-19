@@ -4,6 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[ngerman]{babel}
+\usepackage{natbib}
   
 \title{Understanding Eventual Consistency}
 \subtitle{Schriftliche Ausarbeitung zum Vortrag vom 17.06.2014}
@@ -14,8 +15,7 @@
 \maketitle
 
 \begin{abstract}
-
-Hier kommt das Abstract für unseren Vortrag hin. Wichtig ist, hier nicht das Paper zusammenzufassen, sondern den Inhalt des gesamten Vortrags. Die nächsten beiden Absätze sind Füllmaterial.
+Hier kommt das Abstract für unseren Vortrag über \cite{burckhardt2013} hin. Wichtig ist, hier nicht das Paper zusammenzufassen, sondern den Inhalt des gesamten Vortrags. Die nächsten beiden Absätze sind Füllmaterial.
 
 Modern geo-replicated databases underlying large-scale Internet services guarantee immediate availability and tolerate network partitions at the expense of providing only weak forms of consistency, commonly dubbed eventual consistency. At the moment there is a lot of confusion about the semantics of eventual consistency, as different systems implement it with different sets of features and in subtly different forms, stated either informally or using disparate and low-level formalisms.
 
@@ -23,17 +23,8 @@ We address this problem by proposing a framework for formal and declarative spec
 \end{abstract}
 
 \pagebreak
-  
-%% besser: Bibtex verwenden.
-\begin{thebibliography}{10}
 
-\bibitem{Burckhardt2013}[Burckhardt et al., 2013]
-Sebastian Burckhardt, Alexey Gotsman, Hongseok Yang:
-\newblock Understand Eventual Consistency.
-\newblock \emph{Microsoft Research Technical Report MSR-TR-2013-39}, 25.03.2013.
-
-\end{thebibliography}
+\bibliographystyle{plain}
+\bibliography{literatur}
 
 \end{document}
-
-
