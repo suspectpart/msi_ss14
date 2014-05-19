@@ -1,0 +1,58 @@
+\documentclass[11pt]{beamer}
+\usetheme{Pittsburgh}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\defbeamertemplate*{title page}{customized}[1][]
+{
+  \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+  \flushleft
+  \medskip
+  \usebeamerfont{title}\inserttitle\par
+  \medskip
+  \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+  \vfill
+  \usebeamerfont{author}\insertauthor\par
+  \usebeamerfont{institute}\insertinstitute\par
+  \medskip
+  \usebeamerfont{date}\insertdate\par
+
+}
+
+\titlegraphic{\includegraphics[scale=0.25]{logo.png}}
+\author{Horst Schneider}
+\title{Understanding Eventual Consistency}
+\subtitle{Vortrag für das MSI im SS2014}
+%\setbeamercovered{transparent} 
+%\setbeamertemplate{navigation symbols}{} 
+\institute{Hochschule Mannheim} 
+\date{17.06.2014} 
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\begin{frame}{Einleitung}
+\frametitle{Pest}
+\begin{quotation}
+\glqq Ein Zitat in der Mitte\grqq
+\end{quotation}
+\end{frame}
+
+\begin{frame}{Kapitel 1}
+\begin{itemize}
+\item Ein
+\item paar
+\item Bulletpoints
+\end{itemize}
+\end{frame}
+
+\end{document}
