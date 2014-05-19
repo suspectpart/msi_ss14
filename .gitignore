@@ -1,4 +1,7 @@
+## Temporary files created by gedit, vim etc:
 *.bak
+*~
+*.swp
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
