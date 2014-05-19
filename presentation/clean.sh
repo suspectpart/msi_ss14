@@ -1,1 +1,1 @@
-rm presentation.aux presentation.log presentation.nav presentation.out presentation.snm presentation.toc
+rm -f *.aux *.log *.nav *.out *.snm *.toc *.synctex.gz *.tex.bak *.bbl *.blg 
