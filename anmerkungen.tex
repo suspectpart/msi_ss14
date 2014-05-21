@@ -23,8 +23,16 @@
 \newglossaryentry{eventual consistency}
 {
   name=eventual consistency,
-  description={bezeichnet die Einschränkung, dass Daten nach dem CAP-Theorem zwar sofort verfügbar und partition tolerant sind, dafür aber nicht sofort konsistent sind, sondern erst an einem unbestimmten Punkt in der Zukunft}
+  description={bezeichnet die Einschränkung, dass Daten nach dem CAP Theorem zwar sofort verfügbar und partition tolerant sind, dafür aber nicht sofort konsistent sind, sondern erst an einem unbestimmten Punkt in der Zukunft}
 }
+
+\newglossaryentry{quiescent consistency}
+{
+  name=quiescent consistency,
+  description={basiert auf den zwei Prinzipen "Method calls should appear to happen in a one-at-a-time, sequential order" und "Method calls separated by a period of quiescence should appear
+to take effect in their real-time order". Ein Method Call ist definiert als die Sequenz \textit{invocation}, \textit{pending} und \textit{response}. Prinzip 1 besagt, dass gleichzeitige invocations, die die gleichen Werte manipulieren, selbst bei überlappender pending Phasen keine Mischung ihrer Ergebnisse erzeugen sollten. Man weiß zwar nicht, welcher Call zuerst abgeschlossen ist, aber die Ergebnisse sollten trotzdem aussehen, als ob eine sequentielle Reihenfolge der Befehle gegeben wäre. Prinzip zwei besagt, dass, wenn es eine \textit{ruhende} Phase (= keine pending Calls) zwischen zwei Method Calls gab, die Ergebnisse der beiden Method Calls in ihrer real-time order vorhanden sein sollten. Bsp.: \glqq For example, suppose A and B concurrently enqueue x and y in a FIFO queue. The queue becomes quiescent, and then C enqueues z. We may not be able to predict the relative order of x and y in the queue, but we know they are ahead of z.\grqq}
+}
+
 
 \makeglossaries
 
@@ -38,6 +46,7 @@
 \item \Gls{geo-replicated} Datenbanken garantieren sofortige Verfügbarkeit und Partitionstoleranz auf Kosten schwacher Konsistenz -> \gls{eventual consistency}
 \item es gibt einige Verwirrung über die Semantik von \gls{eventual consistency}
 \item die Vergleichbarkeit verschiedener Semantiken von \gls{eventual consistency} ist unmöglich, da die Semantik oft nur implizit durch die Implementierung gegeben ist bzw. keine Formalismen bei der Beschreibung verwendet werden
+\item \gls{eventual consistency} ist verbunden mit verschiedenen Features wie conflict resolution policies, session guarantees, casuality guarantees und Konsistenzleveln
 \end{itemize}
 
 \begin{framed}
@@ -45,8 +54,26 @@ Ziel des papers ist es, ein Framework zur deklarativen Spezifikation von \gls{ev
 \end{framed}
 
 \section{Introduction}
+\begin{itemize}
+\item Moderne Internetanwendungen basieren auf verteilten Datenbanksystemen, die oft \gls{geo-replicated} sind
+\begin{itemize}
+\item \gls{geo-replicated} Datenbanken erfordern \textbf{partition tolerance}
+\item die Anwender fordern \textbf{sofortige Verfügbarkeit}
+\item -> nach dem CAP-Theorem kann daher keine starke Konsistenz gewährleistet werden
+\end{itemize}
+\item \gls{eventual consistency} beschreibt die \textbf{Garantie}, dass die Datenbank irgendwann in einen konsistenten Zustand kommt, wenn keine Updates mehr die Datenbank erreichen
+\item Im Gegensatz zu relationalen Datenbanken sind die Konsistenzmodelle von \gls{geo-replicated} Datenbanken nicht eindeutig und ausreichend studiert
+\item Der Ausruck \gls{eventual consistency} ist nicht eindeutig besetzt und wird als catch-all buzzword verwendet
+\item Spezifizierungen von \gls{geo-replicated} Konsistenzmodellen sind aus verschiedenen Gründen unzureichend:
+\begin{itemize}
+\item verschiedene, unvereinbare Formalismen bzw. keine Formalismen, oft an spezifische Implementierungen gebunden
+\item schwache Garantien; \gls{eventual consistency} bezeichnet oft nur \gls{quiescent consistency}, einem theoretischen Ansatz, der nicht den praktischen Fall berücksichtigt, dass eventuell nie der Zustand eintritt, in dem keine neuen Updates an der Datenbank ankommen
+\item Schwierigkeit von Conflict Resolution Policies: Vorgehen, wenn zwei Replicas beim Synchronisieren unterschiedliche Versionen des gleichen Objektes besitzen
+\end{itemize}
 
+\end{itemize}
 
+\pagebreak
 \printglossaries
 
 \end{document}
