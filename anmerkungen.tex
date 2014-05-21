@@ -89,6 +89,30 @@ Ziel des papers ist es, ein Framework zur deklarativen Spezifikation von \gls{ev
 \item Das Paper beinhaltet Beweise, dass die Spezifikation die rigorose Vergleichbarkeit zwischen Features und Garantien gewährleistet
 \end{itemize}
 
+\section{Replicated Data Types}
+Grundideen:
+
+\begin{itemize}
+\item Replizierte Datenbank speichert Objekte aus der Menge $Obj = \lbrace x,y,...\rbrace$
+\item Jedes Objekt besitzt einen Wert aus dem Set $Val$
+\item Jedes Objekt $x \in Obj$ besitzt einen Typ type($x$) $\in Type$, der die Menge $Op_{type(x)}$ von Operationen festlegt, die Clients auf dem Objekt ausführen können
+\item Beispiele:
+\begin{itemize}
+\item Datentyp Counter mit den Operationen \textit{read} und \textit{increment}: $Op_{ctr} = \lbrace rd,inc\rbrace$
+\item Datentyp Integer-Register mit den Operationen \textit{read} und \textit{write}: $Op_{ctr} = \lbrace \text{rd}\rbrace \cup \lbrace \text{wr}(k) | k \in \mathbb{Z}$
+\end{itemize}
+\item Die Semantik von sequenziell ausgeführten Operationen eines Datentyps $\tau$ in einem strongly consistent System kann mit folgender Funktion ausgedrückt werden: $S_{\tau} : Op_{\tau}^+ \rightarrow Val$
+\item $\sigma$ beschreibt eine Sequenz beliebiger Operationen
+\item $\perp$ beschreibt Operationen, die keinen Wert zurückgeben
+\item Beispiele:
+\begin{align} 
+S_{ctr}(\sigma \text{ rd}) &= \text{(the number of inc operations in $\sigma$);} \\
+S_{intreg}(\sigma \text{ rd})) &= k; \text{if wr(0) $\sigma$ = $\sigma_1$ wr($k$) $\sigma_2$ and $\sigma_2$ does not contain wr operations;} \\
+S_{ctr}(\sigma \text{ wr($k$)}) &= S_{intreg}(\sigma \text{ inc}) = \perp 
+\end{align}
+
+\end{itemize}
+
 \pagebreak
 \printglossaries
 
