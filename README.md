@@ -8,4 +8,6 @@ Links zu den Quellen des Papers:
 [[1]](http://aws.amazon.com/dynamodb/) Amazon DynamoDB  
 [[19]](http://edc.tversu.ru/elib/inf/0189.pdf) The Art of multiprocessor programming  
 [[17]](http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf) Dynamo: Amazon’s Highly Available Key-value Store  
+[[28]](http://hal.upmc.fr/docs/00/55/55/88/PDF/techreport.pdf) A comprehensive study of
+Convergent and Commutative Replicated Data Types  
 [[30]](http://research.microsoft.com/en-us/people/aguilera/walter-sosp2011.pdf) Transactional storage for geo-replicated systems  
