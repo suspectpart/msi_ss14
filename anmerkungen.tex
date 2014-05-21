@@ -1,0 +1,52 @@
+\documentclass[11pt,a4paper,ngerman]{scrartcl}
+ 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath} 
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{framed}
+
+\usepackage{glossaries}
+\title{Anmerkungen zum Paper}
+\author{Horst Schneider}
+\date{\today{}}
+
+\newglossaryentry{geo-replicated}
+{
+  name=geo-replicated,
+  description={bezeichnet die räumlich voneinander getrennte Verteilung von replizierten (nicht-relationalen) Datenbanken}
+}
+
+\newglossaryentry{eventual consistency}
+{
+  name=eventual consistency,
+  description={bezeichnet die Einschränkung, dass Daten nach dem CAP-Theorem zwar sofort verfügbar und partition tolerant sind, dafür aber nicht sofort konsistent sind, sondern erst an einem unbestimmten Punkt in der Zukunft}
+}
+
+\makeglossaries
+
+\begin{document}
+ 
+\maketitle 
+\pagebreak
+\tableofcontents
+\section{Abstract}
+\begin{itemize}
+\item \Gls{geo-replicated} Datenbanken garantieren sofortige Verfügbarkeit und Partitionstoleranz auf Kosten schwacher Konsistenz -> \gls{eventual consistency}
+\item es gibt einige Verwirrung über die Semantik von \gls{eventual consistency}
+\item die Vergleichbarkeit verschiedener Semantiken von \gls{eventual consistency} ist unmöglich, da die Semantik oft nur implizit durch die Implementierung gegeben ist bzw. keine Formalismen bei der Beschreibung verwendet werden
+\end{itemize}
+
+\begin{framed}
+Ziel des papers ist es, ein Framework zur deklarativen Spezifikation von \gls{eventual consistency} zu bieten, das auf Axiomen basiert.
+\end{framed}
+
+\section{Introduction}
+
+
+\printglossaries
+
+\end{document}
