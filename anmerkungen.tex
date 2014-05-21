@@ -69,8 +69,24 @@ Ziel des papers ist es, ein Framework zur deklarativen Spezifikation von \gls{ev
 \item verschiedene, unvereinbare Formalismen bzw. keine Formalismen, oft an spezifische Implementierungen gebunden
 \item schwache Garantien; \gls{eventual consistency} bezeichnet oft nur \gls{quiescent consistency}, einem theoretischen Ansatz, der nicht den praktischen Fall berücksichtigt, dass eventuell nie der Zustand eintritt, in dem keine neuen Updates an der Datenbank ankommen
 \item Schwierigkeit von Conflict Resolution Policies: Vorgehen, wenn zwei Replicas beim Synchronisieren unterschiedliche Versionen des gleichen Objektes besitzen
+\item Kombination verschiedener Konsistenzlevel: manche Systeme bieten die Mischung von \gls{eventual consistency} und strong consistency (z.B. Amazon dynamoDB). Ebenso gibt es Implementierungen für Transaktionen in \gls{geo-replicated} Systemen. Die Semantik hinter verschiedenen Konsistenzleveln und deren Zusammenspiel ist schwierig zu erfassen.
 \end{itemize}
-
+\item ein einheitlicher Formalismus soll die Beantwortung folgender Fragestellungen erleichtern:
+\begin{itemize}
+\item Erfüllen die Anforderungen an meine Anwendung die gewünschte Ausprägung von \gls{eventual consistency}?
+\item Kann ich einen replizierten Datentyp aus System X in System Y verwenden?
+\item Welche Semantik steckt hinter der Kombination verschiedener Formen von \gls{eventual consistency}?
+\end{itemize}
+\item Die Spezifikation eines \gls{eventual consistency} models besteht aus folgenden Komponenten:
+\begin{itemize}
+\item Spezifikation verschiedener Datentypen (Register, Zähler, multi-value Register (in [17]: binary blobs mit key) observed-remove sets) und deren conflict resolution policy auf Objektebene
+\item Spezifikation der Datenbankweiten Konsistenzgarantien anhand von Axiomen
+\item Interface-Spezifikation: gibt den Anwendern die Möglichkeit, Konsistenzlevel für Operationen, gebündelte Operationen (fences) und Transaktionen festzulegen (bspw. mit Annontationen) 
+\end{itemize}
+\item verschiedene exisitierende Formen von \gls{eventual consistency} werden systematisch in ein Spezifikationsframework überführt, das Garantien und Features der verschiedenen Technologien einheitlich ausdrücken kann und so Vergleichbarkeit schafft bzw. Interaktionen zwischen Systemen beschreiben kann
+\item die Spezifikation wird durch eine abstrakte Implementierung, basierend auf Algorithmen in existierenden Systemen, validiert
+\item die Spezifikation soll stärker als \gls{quiescent consistency} sein und auch in dem Fall zutreffen, wenn kontinuierlich Updates an der Datenbank ankommen
+\item Das Paper beinhaltet Beweise, dass die Spezifikation die rigorose Vergleichbarkeit zwischen Features und Garantien gewährleistet
 \end{itemize}
 
 \pagebreak
