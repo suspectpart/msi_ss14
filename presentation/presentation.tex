@@ -5,7 +5,8 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-
+\usepackage{mathrsfs} 
+\usefonttheme[onlymath]{serif}
 \defbeamertemplate*{title page}{customized}[1][]
 {
   \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
@@ -45,13 +46,50 @@
 \end{quotation}
 \end{frame}
 
-\begin{frame}{Chapter 1}
-\begin{itemize}
-\item A
-\item few
-\item bulletpoints
-\end{itemize}
+\begin{frame}
+\frametitle{Anfang Hauptteil Horst}
 \end{frame}
 
+\begin{frame}
+\frametitle{Replicated Data Types}
+\end{frame}
+
+\begin{frame}
+Mathdump
+\begin{align*}
+S_{\mathrm{ctr}} \mathrm{(\sigma rd) = }k;\ & \mathrm{if\ wr(0) \sigma = \sigma_1 wr(}k\mathrm{) \sigma_2\ and} \\
+ & \mathrm{\sigma_2 \ does\ not\ contain\ wr\ operations}
+\end{align*}
+
+
+\begin{align*}
+\mathrm{Op}_\mathrm{ctr} &= \mathrm{\{rd, inc\}} \\
+\mathrm{Op}_\mathrm{intreg} &= \mathrm{\{rd, wr(}k \mathrm{)|} k \in \mathbb{Z} \mathrm{\}}
+\end{align*}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Ende Hauptteil Horst}
+\end{frame}
+
+\begin{frame}
+\frametitle{Anfang Hauptteil Patrick}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Ende Hauptteil Patrick}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Conclusion}
+\begin{itemize}
+\item Which problems does the techreport solve?
+\item What is not solved by it?
+\item What do \textbf{we} think about it?
+\end{itemize}
+\end{frame}
 
 \end{document}
