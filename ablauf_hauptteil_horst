@@ -1,0 +1,28 @@
+Replicated Datatypes
+
+Folie 1
+
+- the very core of a database are the datatypes
+	- two examples: intreg (rd, wr(k)) and counter (rd, wr)
+- we want to describe how such a datatype behaves
+- we want to do that in a rigorous, exact way in order to reason about datatypes
+- first, we want to look at how we could formalise the behaviour of a datatype
+	- a datatype has a type, a set of operations and a value from a set Val
+- we can specify a function that specifies the return value of the last operation in a sequence
+- first, we look at a sequence of operations in a strongly consistent system
+	- S_ctr(sigma rd) = (number of inc operations in sigma), same for the int register
+
+Folie 2
+
+- extending the formalism to replicated data types
+- operation context
+- relations explained
+- vis and ar relations, V
+
+Folie 3
+
+- extended examples F_ctr and F_intreg
+- four strategies
+
+
+
