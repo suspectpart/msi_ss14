@@ -59,10 +59,10 @@ last updated valuee\grqq
 \begin{frame}
 \frametitle{The Problem}
 \begin{itemize}
-  \item The definitions are ambiguous\linebreak
-  \item Most big players claim to implement it\linebreak
+  \item The definitions are ambiguous
+  \item Most big players claim to implement it
   \item Implementations can't be be compared\ldots scientifically
-
+  \item In real world distributed databases updates never stop
 \end{itemize}
 \end{frame}
 
@@ -177,6 +177,54 @@ S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathr
 \frametitle{Anfang Hauptteil Patrick}
 \end{frame}
 
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{Levels of Eventual Consistency}
+\begin{itemize}
+\item With replicated data types we can define multiple forms of eventual consistency
+\begin{itemize}
+\item Basic eventual consistency
+\item Ordering guarantees
+\item on-demand consistency strengthening
+\end{itemize}
+\item Every form contains multiple axioms
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{Client Interaction Model}
+\begin{itemize}
+\item Clients often wish to perform multiple operations within some context
+\item bla   
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{Basic Eventual Consistency Axioms}
+\begin{itemize}
+\item Axioms a database has to fulfill to be eventual consistent
+\item SOWF, ARWF, VISWF, RVAL, EVENTUAL, THINAIR
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{Session guarantees}
+\begin{itemize}
+\item Axioms that ensure that databases stay consistent within a single session with a client
+\item RYW, MR, WYRV, WFRA, MWV, MWA
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{Causal Consistency Axioms}
+\begin{itemize}
+\item POCV, POCA, COCV, COCA
+\end{itemize}
+\end{frame}
 
 \begin{frame}
 \frametitle{Ende Hauptteil Patrick}
