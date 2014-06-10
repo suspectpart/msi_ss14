@@ -45,11 +45,11 @@
 \begin{frame}
 \frametitle{Introduction}
 \begin{quotation}
-\glqq ...the 
+" ...the 
 storage system guarantees that if no 
 new updates are made to the object, 
 eventually all accesses will return the 
-last updated valuee\grqq
+last updated value"
 \linebreak
 --W. Vogels (2009)
 \end{quotation}
@@ -62,34 +62,36 @@ last updated valuee\grqq
 \framesubtitle{Interpretations of Eventual Consistency}
 \begin{footnotesize}
 
-Interpretation 1:
-
+\begin{block}{Interpretation 1}
 \begin{quotation}
 "When you read data[...], the response might not reflect the results of a recently completed write operation. The response might include some stale data. Consistency across all copies of the data is usually reached within a second; so if you repeat your read request after a short time, the response returns the latest data."
 \end{quotation}
+\end{block}
 
-Interpretation 2:
-
+\begin{block}{Interpretation 2}
 \begin{quotation}
 "This sort of system we term “single writer eventual consistency”.  So what are its properties?\linebreak (1) A client could read stale data. (2) The client could see out-of-order write operations. [...] So this is our weakest form of consistency - eventually consistent with out of order reads in the short term."
 \end{quotation}
+\end{block}
 \end{footnotesize}
 \end{frame}
 
-\begin{frame}
 
+\begin{frame}
 \frametitle{Introduction}
 \framesubtitle{Interpretations of Eventual Consistency}
 \begin{footnotesize}
-DynamoDB Documentation
+\begin{block}{DynamoDB Documentation}
 \begin{quotation}
 "When you read data[...], the response might not reflect the results of a recently completed write operation. The response might include \textbf{some stale data}. Consistency across all copies of the data is \textbf{usually reached within a second}; so if you repeat your read request after a short time, the response returns the latest data."
 \end{quotation}
+\end{block}
 
-MongoDB Documentation
+\begin{block}{MongoDB Documentation}
 \begin{quotation}
-"This sort of system we term “single writer eventual consistency”. So what are its properties?\linebreak (1)A client could read stale data. \linebreak(2)The client could see out-of-order write operations.[...]\linebreak So this is our weakest form of consistency - eventually consistent with \textbf{out of order reads} in the short term."
+"This sort of system we term “single writer eventual consistency”. So what are its properties?\linebreak (1)\textbf{A client could read stale data}. \linebreak(2)The client could see out-of-order write operations.[...]\linebreak So this is our weakest form of consistency - eventually consistent with \textbf{out of order reads} in the short term."
 \end{quotation}
+\end{block}
 \end{footnotesize}
 \end{frame}
 
@@ -199,7 +201,6 @@ S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathr
 \framesubtitle{Replicated Data Type Specification}
 \begin{itemize}
 \item \(S_{\tau}\) is not strong enough to formalize these strategies
-\pause
 \item visibility and order of preceding operations have to be included
 \pause
 \item \(F_\tau\): takes an \textbf{operation context} and returns a \textbf{value}
