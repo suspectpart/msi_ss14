@@ -23,6 +23,8 @@
   \usebeamerfont{date}\insertdate\par
 
 }
+\newenvironment{proenv}{\only{\setbeamercolor{local structure}{fg=green}}}{}
+\newenvironment{conenv}{\only{\setbeamercolor{local structure}{fg=red}}}{}
 
 \setbeamertemplate{footline}[text line]{%
   \parbox{\linewidth}{\vspace*{-8pt}MSI SS14\hfill\insertshortauthor\hfill\insertframenumber}}
@@ -85,10 +87,8 @@ last updated valuee\grqq
 \item Every object \(x \in \mathrm{Obj}\) has
 \begin{itemize}
 \item a \textbf{value} \(\in \mathrm{Val}\)
-\pause
-\item a \textbf{type} type\((x)\)
-\pause
-\item  \textbf{operations} \(\mathrm{Op}_{\mathrm{type}(x)}\) that a client can perform on it
+\item a \textbf{type} type\((x) \leftrightarrow \tau \)
+\item \textbf{operations} \(\mathrm{Op}_{\mathrm{type}(x)}\) that a client can perform on it
 \pause
 \end{itemize}
 \item Two examples: Int Register \textbf{intreg}, Counter \textbf{ctr}
@@ -103,12 +103,12 @@ last updated valuee\grqq
 \begin{frame}
 \frametitle{Replicated Data Types}
 \framesubtitle{Sequential Data Type Specification}
-In a \textit{strongly consistent system}, the semantics of a data type can be described by a function \\
+In a \textit{strongly consistent system}, the semantics of a data type can be specified by a function \\
 \begin{equation*}
 S_{\tau}\ : \mathrm{Op}_\tau^+ \rightarrow \mathrm{Val}
 \end{equation*}
 \pause
-Examples:
+Example:
 \begin{align*}
 S_{\mathrm{ctr}} \mathrm{(\sigma rd)} &= \mathrm{(number\ of\ inc\ operations\ in\ \sigma);} \\
 \onslide<3->{S_{\mathrm{intreg}} \mathrm{(\sigma rd)} &= k;\ \mathrm{if\ wr(0) \sigma = \sigma_1 wr(}k\mathrm{) \sigma_2\ and} \\
@@ -116,12 +116,24 @@ S_{\mathrm{ctr}} \mathrm{(\sigma rd)} &= \mathrm{(number\ of\ inc\ operations\ i
 \onslide<4->{
 S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathrm{(\sigma\ inc)} = \bot; }
 \end{align*}
+(e.g. \(\sigma =\{ \mathrm{rd\ rd\ wr(5)\ wr(6)\ rd\} }\) or \(\sigma =\{ \mathrm{rd\ rd\ inc\ inc\ rd\} } \) )
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Replicated Data Types}
+\framesubtitle{Semantics of Eventual Consistency}
+\begin{itemize}
+\item semantics of eventually consistent systems are harder to formalize
+\item concurrent operations on the same object happen on multiple replicas
+\item each replica executes operations immediately, updating other replicas later
+\item different implementation strategies for replicated data types
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Replicated Data Types}
 \framesubtitle{Conflict Resolution Strategies}
-
 \begin{columns}
 \begin{column}{5cm}
 \begin{figure}
@@ -174,15 +186,51 @@ S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathr
 
 
 \begin{frame}
-
+\frametitle{Replicated Data Types}
+\framesubtitle{Replicated Data Type Specification}
+Example: Strategy \textbf{Make Concurrent Calls Commutative}
+\begin{align*}
+F_{\mathrm{ctr}} \mathrm{(inc}, V, \mathrm{vis, ar)} &= \bot; \\
+F_{\mathrm{ctr}} \mathrm{(rd}, V, \mathrm{vis, ar)} &= \mathrm{(the\ number\ of\ inc\ operations\ in\ } V);
+\end{align*}
+\pause
+Example: Strategy \textbf{Order Concurrent Operations}
+\begin{align*}
+F_{\mathrm{intreg}} \mathrm{(inc}, V, \mathrm{vis, ar)} &= S_{\mathrm{intreg}}(V^{\mathrm{ar}} f) \\
+\end{align*}
 \end{frame}
 
 \begin{frame}
-\frametitle{Ende Hauptteil Horst}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{Session and Action}
+\begin{itemize}
+\item clients wish to perform operations in a common context
+\item \textbf{sessions} provide a way to track client identity for operations
+\item an \textbf{action} is a tuple \((e,s,[x.f:k])\)
+\begin{itemize}
+\item \(e\): unique identifier
+\item \(s\): session id \(\in \mathrm{SId}\)
+\item \([x.f:k]\): object, operation and return value
+\end{itemize}
+\end{itemize}
+\pause
+Example:
+
+\begin{center}
+\(a = (1af3c, 17, [x.rd: k]);\ \mathrm{type(}x\mathrm{)} = \mathrm{intreg}\)
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Anfang Hauptteil Patrick}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{History and Execution}
+\begin{itemize}
+\item the set of all actions that happen in a database is denoted as \(\mathrm{Act}\)
+\item a \textbf{history} \((A,\mathrm{so})\) is a set of actions \(A \subseteq \mathrm{Act}\) and a \textbf{session order} relation \(\mathrm{so} \subseteq A \times A \)
+\item an \textbf{execution} \(X = (A, \mathrm{so, vis, ar})\) enhances the history with visibility and arbitration relations
+\item we can now extract an operation context for any action in any session, providing a deterministic return value
+\end{itemize}
+
 \end{frame}
 
 \begin{frame}
@@ -235,17 +283,22 @@ S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathr
 \end{frame}
 
 \begin{frame}
-\frametitle{Ende Hauptteil Patrick}
-\end{frame}
-
-
-\begin{frame}
 \frametitle{Conclusion}
 \begin{itemize}
-\item Which problems does the techreport solve?
-\item What is not solved by it?
-\item What do \textbf{we} think about it?
+\item<pro@1-> the paper provides a way to \textbf{precisely specify eventually consistent systems} in a common notation
+\item<pro@1-> \textbf{every aspect of a system is covered}, from data types to client interaction
+\item<pro@1-> specifications are \textbf{independent of implementation details}
+\item<con@1-> still \textbf{very theoretical}, no tools available to map between specifications and implementation 
+\item<con@1-> the framework is \textbf{not suitable for programmers}, as it is very abstract and not easily understandable and applicable
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\begin{Huge}
+Discussion
+\end{Huge}
+\end{center}
 \end{frame}
 
 \end{document}
