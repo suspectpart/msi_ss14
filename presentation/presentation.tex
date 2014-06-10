@@ -41,10 +41,6 @@
 \end{frame}
 
 \begin{frame}
-\tableofcontents
-\end{frame}
-
-\begin{frame}
 \frametitle{Introduction}
 \begin{quotation}
 \glqq ...the 
@@ -55,20 +51,62 @@ last updated valuee\grqq
 \linebreak
 --W. Vogels (2009)
 \end{quotation}
+\end{frame}
 
+\begin{frame}
+\frametitle{Introduction}
+\framesubtitle{Interpretations of Eventual Consistency}
+\begin{footnotesize}
+Interpretation 1:
 \begin{quotation}
-\glqq Zweites Zitat über Ev. Consistency \grqq
+"When you read data[...], the response might not reflect the results of a recently completed write operation. The response might include some stale data. Consistency across all copies of the data is usually reached within a second; so if you repeat your read request after a short time, the response returns the latest data."
 \end{quotation}
+
+Interpretation 2:
+\begin{quotation}
+"This sort of system we term “single writer eventual consistency”.  So what are its properties?\linebreak (1) A client could read stale data. (2) The client could see out-of-order write operations. [...] So this is our weakest form of consistency - eventually consistent with out of order reads in the short term."
+\end{quotation}
+\end{footnotesize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Introduction}
+\framesubtitle{Interpretations of Eventual Consistency}
+\begin{footnotesize}
+DynamoDB Documentation
+\begin{quotation}
+"When you read data[...], the response might not reflect the results of a recently completed write operation. The response might include \textbf{some stale data}. Consistency across all copies of the data is \textbf{usually reached within a second}; so if you repeat your read request after a short time, the response returns the latest data."
+\end{quotation}
+
+MongoDB Documentation
+\begin{quotation}
+"This sort of system we term “single writer eventual consistency”. So what are its properties?\linebreak (1)A client could read stale data. \linebreak(2)The client could see out-of-order write operations.[...]\linebreak So this is our weakest form of consistency - eventually consistent with \textbf{out of order reads} in the short term."
+\end{quotation}
+\end{footnotesize}
 \end{frame}
 
 \begin{frame}
 \frametitle{The Problem}
 \begin{itemize}
-  \item The definitions are ambiguous
-  \item Most big players claim to implement it
-  \item Implementations can't be be compared\ldots scientifically
-  \item In real world distributed databases updates never stop
+  \item Disparate and low-level formalisms\linebreak 
+  \textit{consistency model is tied to system implementation}
+  \item Weak guarantees\linebreak 
+  \textit{in realistic scenarios updates \textbf{never} stop}
+  \item Conflict resolution policies\linebreak 
+  \textit{resolution of conflicts in multiple replicas}
+  \item Combinations of different consistency levels\linebreak 
+  \textit{strong consistency may be needed at certain times}
+  
 \end{itemize}
+\begin{large}
+\ensuremath{\Rightarrow}
+\end{large}
+Some sort of formalism is needed to define semantics of Eventual Consistency
+\end{frame}
+
+\begin{frame}
+\frametitle{Agenda}
+\tableofcontents
 \end{frame}
 
 \begin{frame}
