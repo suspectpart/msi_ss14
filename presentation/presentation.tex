@@ -316,7 +316,7 @@ Example:
 \framesubtitle{Session guarantees}
 \begin{itemize}
 \item Axioms that ensure that databases stay consistent within a single session with a client
-\item !RYW!, MR, WYRV, WFRA, MWV, MWA
+\item !RYW!, MR, !WYRV!, WFRA, MWV, MWA
 \end{itemize}
 \end{frame}
 
@@ -324,9 +324,40 @@ Example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Causal Consistency Axioms}
 \begin{itemize}
-\item POCV, POCA, COCV, COCA
+\item POCV, POCA
 \end{itemize}
 \end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{On-Demand Consistency Strengthening}
+\begin{itemize}
+\item Amazon Shopping Cart Example
+\item Explain Need for Consistency on Demand in certain business cases
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{Consistency Annotations}
+\begin{itemize}
+\item every operation accepted by the db has to annotaed with a "consistency annotation"
+\item either ordinary or causal
+\item ordinary actions behave like we defined previously
+\item causal actions make all operations performed before the annotations visible to other actions
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{Fences}
+\begin{itemize}
+\item instead of annotation every single action we put them into a fence
+\item a fence is a set of actions where the db node forces all other replica to execute the actions in the fence and send a receipt
+\item Essentially turns the cluster into an array of 'CP' databasesCP)
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Conclusion}
