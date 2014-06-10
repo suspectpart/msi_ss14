@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{mathrsfs} 
 \usefonttheme[onlymath]{serif}
+
 \defbeamertemplate*{title page}{customized}[1][]
 {
   \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
@@ -23,6 +24,10 @@
 
 }
 
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\linewidth}{\vspace*{-8pt}MSI SS14\hfill\insertshortauthor\hfill\insertframenumber}}
+\setbeamertemplate{navigation symbols}{}
+
 \titlegraphic{\includegraphics[scale=0.25]{logo.png}}
 \author{Horst Schneider, Patrick Beedgen}
 \title{Understanding Eventual Consistency}
@@ -35,9 +40,9 @@
 \titlepage
 \end{frame}
 
-%\begin{frame}
-%\tableofcontents
-%\end{frame}
+\begin{frame}
+\tableofcontents
+\end{frame}
 
 \begin{frame}
 \frametitle{Introduction}
@@ -69,6 +74,8 @@ last updated valuee\grqq
 \begin{frame}
 \frametitle{Anfang Hauptteil Horst}
 \end{frame}
+
+\section{Replicated Data Types}
 
 \begin{frame}
 \frametitle{Replicated Data Types}
@@ -164,6 +171,7 @@ S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathr
 \end{center}
 
 \end{frame}
+
 
 \begin{frame}
 
