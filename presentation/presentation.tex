@@ -278,11 +278,11 @@ Example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Levels of Eventual Consistency}
 \begin{itemize}
-\item With replicated data types we can define multiple forms of eventual consistency
+\item With these replicated data types we can define multiple forms of eventual consistency
 \begin{itemize}
 \item Basic eventual consistency
 \item Ordering guarantees
-\item on-demand consistency strengthening
+\item On-demand consistency strengthening
 \end{itemize}
 \item Every form contains multiple axioms
 \end{itemize}
@@ -290,19 +290,23 @@ Example:
 
 \begin{frame}
 \frametitle{Axiomatic Specification Framework}
-\framesubtitle{Client Interaction Model}
-\begin{itemize}
-\item Clients often wish to perform multiple operations within some context
-\item bla   
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Axiomatic Specification Framework}
 \framesubtitle{Basic Eventual Consistency Axioms}
 \begin{itemize}
-\item Axioms a database has to fulfill to be eventual consistent
-\item SOWF, ARWF, VISWF, RVAL, EVENTUAL, THINAIR
+\item Axioms a database implementation has to apply to offer basic eventual consistency
+\item Well-Formedness Axioms
+\begin{itemize}
+\item SOwf, ARwf, VISwf
+\end{itemize}
+\item Data Type Axiom
+\begin{itemize}
+\item RVAL
+\end{itemize}
+\item Basic Eventual Consistency axioms
+\begin{itemize}
+\item EVENTUAL
+\item THINAIR
+\end{itemize}
+
 \end{itemize}
 \end{frame}
 
@@ -311,7 +315,7 @@ Example:
 \framesubtitle{Session guarantees}
 \begin{itemize}
 \item Axioms that ensure that databases stay consistent within a single session with a client
-\item RYW, MR, WYRV, WFRA, MWV, MWA
+\item !RYW!, MR, WYRV, WFRA, MWV, MWA
 \end{itemize}
 \end{frame}
 
