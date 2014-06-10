@@ -113,6 +113,22 @@ S_{ctr}(\sigma \text{ wr($k$)}) &= S_{intreg}(\sigma \text{ inc}) = \perp
 
 \end{itemize}
 
+\section{Zitate für die Einleitung}
+http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/APISummary.html
+
+"Eventually Consistent Reads
+
+When you read data (GetItem, BatchGetItem, Query or Scan operations), the response might not reflect the results of a recently completed write operation (PutItem, UpdateItem or DeleteItem). The response might include some stale data. Consistency across all copies of the data is usually reached within a second; so if you repeat your read request after a short time, the response returns the latest data. "
+
+------
+
+http://blog.mongodb.org/post/498145601/on-distributed-consistency-part-2-some-eventual
+
+MongoDB docs
+
+This sort of system we term “single writer eventual consistency”.  So what are its properties?  (1) A client could read stale data. (2) The client could see out-of-order write operations. (...) So this is our weakest form of consistency - eventually consistent with out of order reads in the short term. 
+ 
+
 \pagebreak
 \printglossaries
 
