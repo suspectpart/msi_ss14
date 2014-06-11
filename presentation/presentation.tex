@@ -315,16 +315,25 @@ Example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Session guarantees}
 \begin{itemize}
-\item Axioms that ensure that databases stay consistent within a single session with a client
-\item !RYW!, MR, !WYRV!, WFRA, MWV, MWA
+\item Axioms that formalise that all operation within a session keep the current context consistent
+\item Read Your Writes: \textit{An operation sees all previous operations
+by the same session}
+\item Writes Follow Reads in Visibility: \textit{Arbitration orders an
+operation after other operations previously seen by the same session}
+\item ... etc.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Axiomatic Specification Framework}
-\framesubtitle{Causal Consistency Axioms}
+\framesubtitle{Causality Axioms}
 \begin{itemize}
-\item POCV, POCA
+\item Per-object-causal-visibility:
+\textit{POCV guarantees that an operation sees all operations
+on the same object that causally affect it}
+\item Per-object-causal-arbitration:
+\textit{POCA correspondingly
+restricts the arbitration relation}
 \end{itemize}
 \end{frame}
 
@@ -332,8 +341,8 @@ Example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{On-Demand Consistency Strengthening}
 \begin{itemize}
-\item Amazon Shopping Cart Example
-\item Explain Need for Consistency on Demand in certain business cases
+\item Amazon Shopping Cart Example from Paper
+\item Explain the need for "Consistency on Demand" in certain business cases
 \end{itemize}
 \end{frame}
 
@@ -341,10 +350,10 @@ Example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Consistency Annotations}
 \begin{itemize}
-\item every operation accepted by the db has to annotaed with a "consistency annotation"
-\item either ordinary or causal
-\item ordinary actions behave like we defined previously
-\item causal actions make all operations performed before the annotations visible to other actions
+\item Every operation accepted by the database has to annotaed with a "consistency annotation"
+\item Either ordinary or causal
+\item Ordinary actions behave like we defined previously
+\item Causal actions make all operations performed before the annotations visible to all previous actions
 \end{itemize}
 \end{frame}
 
@@ -352,9 +361,9 @@ Example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Fences}
 \begin{itemize}
-\item instead of annotation every single action we put them into a fence
-\item a fence is a set of actions where the db node forces all other replica to execute the actions in the fence and send a receipt
-\item Essentially turns the cluster into an array of 'CP' databasesCP)
+\item Instead of annotating every single action we put them into a fence
+\item a fence is a set of actions where the db node forces all other replicas to execute the actions in the fence and send a receipt
+\item Essentially turns the cluster into an array of 'CP' databases until the fence is completed
 \end{itemize}
 \end{frame}
 
@@ -362,11 +371,11 @@ Example:
 \begin{frame}
 \frametitle{Conclusion}
 \begin{itemize}
-\item<pro@1-> the paper provides a way to \textbf{precisely specify eventually consistent systems} in a common notation
-\item<pro@1-> \textbf{every aspect of a system is covered}, from data types to client interaction
-\item<pro@1-> specifications are \textbf{independent of implementation details}
-\item<con@1-> still \textbf{very theoretical}, no tools available to map between specifications and implementation 
-\item<con@1-> the framework is \textbf{not suitable for programmers}, as it is very abstract and not easily understandable and applicable
+\item<pro@1-> The paper provides a way to \textbf{precisely specify eventually consistent systems} in a common notation
+\item<pro@1-> \textbf{Every aspect of a system is covered}, from data types to client interaction
+\item<pro@1-> Specifications are \textbf{independent of implementation details}
+\item<con@1-> Still \textbf{very theoretical}, no tools available to map between specifications and implementation 
+\item<con@1-> The framework is \textbf{not suitable for programmers}, as it is very abstract and not easily understandable and applicable
 \end{itemize}
 \end{frame}
 
