@@ -307,8 +307,14 @@ Example:
 \item EVENTUAL
 \item THINAIR
 \end{itemize}
-
 \end{itemize}
+TODO: FORMELN
+\end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{Problem with basic eventual consistency}
+TODO: Image explaining photo/noboss example from paper
 \end{frame}
 
 \begin{frame}
@@ -323,6 +329,7 @@ by the same session}
 operation after other operations previously seen by the same session}
 \item ... etc.
 \end{itemize}
+TODO: FORMELN
 \end{frame}
 
 \begin{frame}
@@ -336,6 +343,7 @@ on the same object that causally affect it}
 \textit{POCA correspondingly
 restricts the arbitration relation}
 \end{itemize}
+TODO: FORMELN
 \end{frame}
 
 \begin{frame}
@@ -356,16 +364,19 @@ restricts the arbitration relation}
 \item Ordinary actions behave like we defined previously
 \item Causal actions make all operations performed before the annotations visible to all previous actions
 \end{itemize}
+TODO: FORMELN
 \end{frame}
 
 \begin{frame}
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Fences}
 \begin{itemize}
-\item Instead of annotating every single action we put them into a fence
-\item a fence is a set of actions where the db node forces all other replicas to execute the actions in the fence and send a receipt
-\item Essentially turns the cluster into an array of 'CP' databases until the fence is completed
+\item Instead of annotating every single action, a \textit{fence} could be used
+\item A \textit{fence} is an action where the executing replica forces all its updates on every other replica in the cluster
+\item The execution of other actions is halted until all replicas acknowledge the receipt
+\item this violates the \textbf{A} in \textbf{CAP}
 \end{itemize}
+TODO: FORMELN
 \end{frame}
 
 
