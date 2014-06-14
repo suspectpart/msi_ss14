@@ -309,14 +309,11 @@ on actions by each session}
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Basic Eventual Consistency Axioms}
 \begin{itemize}
-\item Data Type Axiom
-\begin{itemize}
-\item RVAL
-\end{itemize}
+\item Data Type Axiom: \(\forall a \in A. \text{ } \mathrm{rval}(a) = F \mathrm{_{type(a)}} (\mathrm{ctxt}(a))\)
 \item Basic Eventual Consistency axioms
 \begin{itemize}
-\item EVENTUAL
-\item THINAIR
+\item THINAIR: \(\mathrm{so} \cup \mathrm{vis} \text{ } \mathrm{is} \text{ } \mathrm{anticyclic} \) \linebreak
+\item EVENTUAL: \center{\(\forall a \in A. \text{ } \neg(\exists \mathrm{infinitely} \text{ } \mathrm{many} \text{ } b  \in A. \text{ } \mathrm{same}(a,b)) \wedge \neg(a \xrightarrow[]{\text{vis}} b)) \)}
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -339,7 +336,6 @@ by the same session}
 operation after other operations previously seen by the same session}
 \item ... etc.
 \end{itemize}
-TODO: FORMELN
 \end{frame}
 
 \begin{frame}
