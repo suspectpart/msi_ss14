@@ -286,6 +286,7 @@ Example:
 \item On-demand consistency strengthening
 \end{itemize}
 \item Every form contains multiple axioms
+\item More axioms means stronger consistency
 \end{itemize}
 \end{frame}
 
@@ -294,10 +295,21 @@ Example:
 \framesubtitle{Basic Eventual Consistency Axioms}
 \begin{itemize}
 \item Axioms a database implementation has to apply to offer basic eventual consistency
-\item Well-Formedness Axioms
+\item Well Formedness Axioms
 \begin{itemize}
-\item SOwf, ARwf, VISwf
+\item SOwf: \textit{so is the union of transitive, irreflexive and total orders
+on actions by each session}
+\item VISwf: \(a,b. \text{ } a \xrightarrow[]{\text{ vis }}b \Rightarrow obj(a) = obj(b) \)
+\item ARwf: \(a,b. \text{ } a \xrightarrow[]{\text{ ar }} b \Rightarrow obj(a) = obj(b) \)
 \end{itemize}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{Basic Eventual Consistency Axioms}
+\begin{itemize}
 \item Data Type Axiom
 \begin{itemize}
 \item RVAL
@@ -308,7 +320,6 @@ Example:
 \item THINAIR
 \end{itemize}
 \end{itemize}
-TODO: FORMELN
 \end{frame}
 
 \begin{frame}
