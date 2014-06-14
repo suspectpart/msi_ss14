@@ -282,8 +282,8 @@ Example:
 \item With these replicated data types we can define multiple forms of eventual consistency
 \begin{itemize}
 \item Basic eventual consistency
-\item Ordering guarantees
-\item On-demand consistency strengthening
+\item Session guarantees
+\item Causality axioms
 \end{itemize}
 \item Every form contains multiple axioms
 \item More axioms means stronger consistency
@@ -294,15 +294,14 @@ Example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Basic Eventual Consistency Axioms}
 \begin{itemize}
-\item Axioms a database implementation has to apply to offer basic eventual consistency
+\item Axioms a database implementation has to enforce to offer \textbf{basic eventual consistency} 
 \item Well Formedness Axioms
 \begin{itemize}
 \item SOwf: \textit{so is the union of transitive, irreflexive and total orders
 on actions by each session}
-\item VISwf: \(a,b. \text{ } a \xrightarrow[]{\text{ vis }}b \Rightarrow obj(a) = obj(b) \)
-\item ARwf: \(a,b. \text{ } a \xrightarrow[]{\text{ ar }} b \Rightarrow obj(a) = obj(b) \)
+\item VISwf: \(\forall a,b. \text{ } a \xrightarrow[]{\text{ vis }}b \Rightarrow obj(a) = obj(b) \)
+\item ARwf: \(\forall a,b. \text{ } a \xrightarrow[]{\text{ ar }} b \Rightarrow obj(a) = obj(b) \)
 \end{itemize}
-
 \end{itemize}
 \end{frame}
 
