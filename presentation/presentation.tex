@@ -70,7 +70,7 @@ last updated value"
 
 \begin{block}{Interpretation 2}
 \begin{quotation}
-"This sort of system we term “single writer eventual consistency”.  So what are its properties?\linebreak (1) A client could read stale data. (2) The client could see out-of-order write operations. [...] So this is our weakest form of consistency - eventually consistent with out of order reads in the short term."
+"This sort of system we term “single writer eventual consistency”.  So what are its properties? \linebreak (1) A client could read stale data.\linebreak (2) The client could see out-of-order write operations. [...] So this is our weakest form of consistency - eventually consistent with out of order reads in the short term."
 \end{quotation}
 \end{block}
 \end{footnotesize}
@@ -279,10 +279,10 @@ Example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Levels of Eventual Consistency}
 \begin{itemize}
-\item With these replicated data types we can define multiple forms of eventual consistency
+\item With these replicated data types we can define multiple forms of Eventual Consistency
 \begin{itemize}
-\item Basic eventual consistency
-\item Session guarantees
+\item Basic Eventual Eonsistency
+\item Session Guarantees
 \item Causality axioms
 \end{itemize}
 \item Every form contains multiple axioms
@@ -309,11 +309,11 @@ on actions by each session}
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Basic Eventual Consistency Axioms}
 \begin{itemize}
-\item Data Type Axiom: \(\forall a \in A. \text{ } \mathrm{rval}(a) = F \mathrm{_{type(a)}} (\mathrm{ctxt}(a))\)
-\item Basic Eventual Consistency axioms
+\item Data Type Axiom: \linebreak \(\forall a \in A. \text{ } \mathrm{rval}(a) = F \mathrm{_{type(a)}} (\mathrm{ctxt}(a))\)
+\item Basic Eventual Consistency axioms:
 \begin{itemize}
-\item THINAIR: \(\mathrm{so} \cup \mathrm{vis} \text{ } \mathrm{is} \text{ } \mathrm{anticyclic} \) \linebreak
-\item EVENTUAL: \center{\(\forall a \in A. \text{ } \neg(\exists \mathrm{infinitely} \text{ } \mathrm{many} \text{ } b  \in A. \text{ } \mathrm{same}(a,b)) \wedge \neg(a \xrightarrow[]{\text{vis}} b)) \)}
+\item THINAIR: \linebreak \(\mathrm{so} \cup \mathrm{vis} \text{ } \mathrm{is} \text{ } \mathrm{anticyclic} \) 
+\item EVENTUAL: \linebreak \(\forall a \in A. \text{ } \neg(\exists \mathrm{infinitely} \text{ } \mathrm{many} \text{ } b  \in A. \text{ } \mathrm{same}(a,b)) \wedge \neg(a \xrightarrow[]{\text{vis}} b)) \)
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -349,7 +349,6 @@ on the same object that causally affect it}
 \textit{POCA correspondingly
 restricts the arbitration relation}
 \end{itemize}
-TODO: FORMELN
 \end{frame}
 
 \section{Consistency Strengthening Interfaces}
@@ -367,24 +366,24 @@ TODO: FORMELN
 \frametitle{Consistency Strengthening Interfaces}
 \framesubtitle{Consistency Annotations}
 \begin{itemize}
-\item Every operation accepted by the database has to annotaed with a "consistency annotation"
-\item Either ordinary or causal
+\item Every \textbf{action} accepted by the database has to annotaed with a \textbf{consistency annotation}
+\begin{center} \((e,s,[x.f\mathrm{_{\mu}}:k]) \mu \in \{ORD, CSL\}\)\end{center} 
+\item Either \textbf{ordinary} or \textbf{causal}
 \item Ordinary actions behave like we defined previously
 \item Causal actions make all operations performed before the annotations visible to all previous actions
 \end{itemize}
-TODO: FORMELN
 \end{frame}
 
 \begin{frame}
 \frametitle{Consistency Strengthening Interfaces}
 \framesubtitle{Fences}
 \begin{itemize}
-\item Instead of annotating every single action, a \textit{fence} could be used
-\item A \textit{fence} is an action where the executing replica forces all its updates on every other replica in the cluster
+\item Instead of annotating every single action, a \textbf{fence} could be used
+\item A \textit{fence} is an \textbf{action} where the executing replica forces all its updates on every other replica in the cluster
+\begin{center} action a =  \((e,s, \mathrm{fence})\)\end{center} 
 \item The execution of other actions is halted until all replicas acknowledge the receipt
 \item this violates the \textbf{A} in \textbf{CAP}
 \end{itemize}
-TODO: FORMELN
 \end{frame}
 
 \section{Conclusion / Discussion}
@@ -397,6 +396,7 @@ TODO: FORMELN
 \item<pro@1-> Specifications are \textbf{independent of implementation details}
 \item<con@1-> Still \textbf{very theoretical}, no tools available to map between specifications and implementation 
 \item<con@1-> The framework is \textbf{not suitable for programmers}, as it is very abstract and not easily understandable and applicable
+\item<con@1-> The Paper is still "work in progress"
 \end{itemize}
 \end{frame}
 
