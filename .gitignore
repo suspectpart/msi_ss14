@@ -2,6 +2,7 @@
 *.bak
 *~
 *.swp
+.~lock*
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
