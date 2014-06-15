@@ -5,26 +5,31 @@
 \usepackage{lmodern}
 \usepackage[ngerman]{babel}
 \usepackage{natbib}
+\usepackage{url}
   
 \title{Understanding Eventual Consistency}
-\subtitle{Schriftliche Ausarbeitung zum Vortrag vom 17.06.2014}
+\subtitle{Summary of the presentation held on June 17th, 2014}
 \author{Horst Schneider, Patrick Beedgen}
-\date{\today}
+\date{June 17th, 2014} 
 \begin{document}
  
 \maketitle
 
 \begin{abstract}
-Hier kommt das Abstract für unseren Vortrag über \cite{burckhardt2013} hin. Wichtig ist, hier nicht das Paper zusammenzufassen, sondern den Inhalt des gesamten Vortrags. Die nächsten beiden Absätze sind Füllmaterial.
+Modern large-scale, geo-replicated Web Applications depend on databases that are highly available and can be scaled largerly. Following the CAP theorem, this can not be achieved without constraints in consistency. Geo-replicated databases like Amazon DynamoDB, MongoDB, CouchDB, and many others offer consistency models that are commonly described with the term \textit{eventual consistency}. While some of these databases offer similar features, it is not possible to compare features of different systems semantically, as different formalisms are used, weak guarantees are being made and handling of conflict resolution varies greatly. 
 
-Modern geo-replicated databases underlying large-scale Internet services guarantee immediate availability and tolerate network partitions at the expense of providing only weak forms of consistency, commonly dubbed eventual consistency. At the moment there is a lot of confusion about the semantics of eventual consistency, as different systems implement it with different sets of features and in subtly different forms, stated either informally or using disparate and low-level formalisms.
+Based on \citep{burckhardt2013}, this presentation is going to suggest a rigorous way to specifiy the semantics of geo-replicated databases. 
+After presenting a function that is general enough to specify the semantics of any replicated data type, different conflict resolution strategies from real-world applications are identified. To show the validity of the replicated data type specification, examples are given to show how those strategies can be specified using the presented formalism. 
+In a next step, the semantics of individual objects are extended to the whole database by defining sessions and a database history that provide a context allowing us to formalize features and guarantees of the whole database, considering interactions in different sessions and on different replicas.
 
-We address this problem by proposing a framework for formal and declarative specification of the semantics of eventually consistent systems using axioms. Our framework is fully customizable: by varying the set of axioms, we can rigorously define the semantics of systems that combine any subset of typical guarantees or features, including conflict resolution policies, session guarantees, causality guarantees, multiple consistency levels and transactions. We prove that our specifications are validated by an example abstract implementation, based on algorithms used in real-world systems. These results demonstrate that our framework provides system architects with a tool for exploring the design space, and lays the foundation for formal reasoning about eventually consistent systems.
+Und hier kommt dann dein teil und ein satz zu konklusion...
+
 \end{abstract}
 
 \pagebreak
 
-\bibliographystyle{plain}
+\bibliographystyle{alpha}
+\nocite{*}
 \bibliography{literatur}
 
 \end{document}
