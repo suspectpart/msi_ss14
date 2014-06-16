@@ -155,11 +155,12 @@ S_{\tau}: \mathrm{Op}_\tau^+ \rightarrow \mathrm{Val}
 \pause
 example:
 \begin{align*}
-S_{\mathrm{ctr}} \mathrm{(\sigma rd)} &= \mathrm{(number\ of\ inc\ operations\ in\ \sigma);} \\
-\onslide<3->{S_{\mathrm{intreg}} \mathrm{(\sigma rd)} &= k;\ \mathrm{if\ wr(0) \sigma = \sigma_1 wr(}k\mathrm{) \sigma_2\ and} \\
- & \mathrm{\sigma_2 \ does\ not\ contain\ wr\ operations} \\}
+S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathrm{(\sigma\ inc)} = \bot; \\
+\onslide<3->{S_{\mathrm{ctr}} \mathrm{(\sigma rd)} &= \mathrm{(number\ of\ inc\ operations\ in\ \sigma);} \\}
 \onslide<4->{
-S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathrm{(\sigma\ inc)} = \bot; }
+S_{\mathrm{intreg}} \mathrm{(\sigma rd)} &= k;\ \mathrm{if\ wr(0) \sigma = \sigma_1 wr(}k\mathrm{) \sigma_2\ and} \\
+ & \mathrm{\sigma_2 \ does\ not\ contain\ wr\ operations}
+ }
 \end{align*}
 (e.g. \(\sigma =\{ \mathrm{rd\ rd\ wr(5)\ wr(6)\ rd\} }\) or \(\sigma =\{ \mathrm{rd\ rd\ inc\ inc\ rd\} } \) )
 
@@ -241,6 +242,19 @@ example: Strategy \textbf{Order Concurrent Operations}
 F_{\mathrm{intreg}} (f, V, \mathrm{vis, ar)} &= S_{\mathrm{intreg}}(V^{\mathrm{ar}} f) \\
 &(S_{\tau}\ :\ \mathrm{Op}_\tau^+ \rightarrow \mathrm{Val})
 \end{align*}
+\end{frame}
+
+\begin{frame}
+\frametitle{Replicated Data Types}
+\framesubtitle{Replicated Data Type Specification}
+example: Strategy \textbf{Flag Conflicts}
+\begin{center}
+
+\includegraphics[scale=0.6]{mvr.png}
+\\
+writes on a multi value register
+
+\end{center}
 \end{frame}
 
 \section{Axiomatic Specification Framework}
