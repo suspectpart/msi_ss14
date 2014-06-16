@@ -247,6 +247,39 @@ F_{\mathrm{intreg}} (f, V, \mathrm{vis, ar)} &= S_{\mathrm{intreg}}(V^{\mathrm{a
 
 \begin{frame}
 \frametitle{Axiomatic Specification Framework}
+\framesubtitle{Session and Action}
+\begin{itemize}
+\item a single client may do several changes to the same object
+\item \textbf{sessions} provide a way to track client identity for operations
+\item an \textbf{action} is a tuple \((e,s,[x.f:k])\)
+\begin{itemize}
+\item \(e\): unique identifier
+\item \(s\): session id \(\in \mathrm{SId}\)
+\item \([x.f:k]\): object, operation and return value
+\end{itemize}
+\end{itemize}
+\pause
+example:
+
+\begin{center}
+\(a = (1af3c, 17, [x.rd: k]);\ \mathrm{type(}x\mathrm{)} = \mathrm{intreg}\)
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
+\framesubtitle{History and Execution}
+\begin{itemize}
+\item the set of all actions that happen in a database is denoted as \(\mathrm{Act}\)
+\item a \textbf{history} \((A,\mathrm{so})\) is a set of actions \(A \subseteq \mathrm{Act}\) and a \textbf{session order} relation \(\mathrm{so} \subseteq A \times A \)
+\item an \textbf{execution} \(X = (A, \mathrm{so, vis, ar})\) enhances the history with visibility and arbitration relations
+\item we can now extract an operation context for any action in any session, providing a deterministic return value
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Axiomatic Specification Framework}
 \framesubtitle{Levels of Eventual Consistency}
 \begin{itemize}
 \item with replicated data types we can define multiple forms of Eventual Consistency
