@@ -20,10 +20,17 @@ Modern large-scale, geo-replicated Web Applications depend on databases that are
 
 Based on \citep{burckhardt2013}, this presentation is going to suggest a rigorous way to specifiy the semantics of geo-replicated databases. 
 After presenting a function that is general enough to specify the semantics of any replicated data type, different conflict resolution strategies from real-world applications are identified. To show the validity of the replicated data type specification, examples are given to show how those strategies can be specified using the presented formalism. 
-In a next step, the semantics of individual objects are extended to the whole database by defining sessions and a database history that provide a context allowing us to formalize features and guarantees of the whole database, considering interactions in different sessions and on different replicas.
-
-Und hier kommt dann dein teil und ein satz zu konklusion...
-
+In a next step, the semantics of individual objects are extended to the whole database by defining sessions and a database history that provide a context allowing us to formalize features and guarantees of the whole database, considering interactions in different sessions and on different replicas.\\
+With the help of these defined datatypes and their semantics in a so-called \textit{operation context}, different levels of eventual consistency are being formalized. Those consistency levels will be grouped into three forms:
+\begin{itemize}
+\item basic Eventual Consistency
+\item session guarantees
+\item causal consistency
+\end{itemize} 
+Each form is defined by multiple consistency axioms that provide stronger consistency with every axiom chosen. Every form builds upon the latter one, meaning, that session guarantees can't be achieved without providing basic Eventual Consistency. From every form there will be picked selected axioms to show the issues of available and partition-tolerant databases that are being addressed by them.\\
+The final part of the presentation will revolve around the idea of strengthening consistency on-demand. A real world example will be used to demonstrate the advantages of this concept. \\After emphasizing its uses, the two concepts mentioned in \citep{burckhardt2013} of how to strengthen consistency on demand are being elaborated upon.\\
+\\
+The presentation will be finalized by showing advantages and disadvantages of the shown concepts and by discussing them with the plenum.
 \end{abstract}
 
 \pagebreak
