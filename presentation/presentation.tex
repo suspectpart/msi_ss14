@@ -361,11 +361,19 @@ restricts the arbitration relation}
 
 \begin{frame}
 \frametitle{Consistency Strengthening Interfaces}
-\framesubtitle{On-Demand Consistency Strengthening}
+\framesubtitle{Online Shopping}
 \begin{itemize}
-\item Amazon Shopping Cart Example from Paper
-\item Explain the need for "Consistency on Demand" in certain business cases
+\item almost everybody does online shopping
+\begin{itemize}
+\item we put items in our shopping cart
+\item we pay them
+\item we continue shopping.. or not
 \end{itemize}
+\end{itemize}
+\pause
+\includegraphics[scale=0.25]{shopping_example.png} \linebreak
+\pause
+\includegraphics[scale=0.25]{shopping_example_lower.png}
 \end{frame}
 
 \begin{frame}
@@ -385,7 +393,7 @@ restricts the arbitration relation}
 \framesubtitle{Fences}
 \begin{itemize}
 \item instead of annotating every single action, a \textbf{fence} can be used
-\item a \textit{fence} is an \textbf{action} where the executing replica forces all its updates on every other replica in the cluster
+\item a \textbf{fence} is an \textbf{action} where the executing replica forces all its updates on every other replica in the cluster
 \begin{center} action a =  \((e,s, \mathrm{fence})\)\end{center} 
 \item the execution of other actions is halted until all replicas acknowledge the receipt
 \pause
