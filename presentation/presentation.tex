@@ -96,21 +96,25 @@ last updated value"
 \end{frame}
 
 \begin{frame}
-\frametitle{The Problem}
+\frametitle{Problems}
 \begin{itemize}
-\item Disparate and low-level formalisms\linebreak 
+\item disparate and low-level formalisms\linebreak 
 \textit{consistency model is tied to system implementation}
-\item Weak guarantees\linebreak 
+\pause
+\item weak guarantees\linebreak 
 \textit{in realistic scenarios updates \textbf{never} stop}
-\item Conflict resolution policies\linebreak 
+\pause
+\item conflict resolution policies\linebreak 
 \textit{resolution of conflicts in multiple replicas}
-\item Combinations of different consistency levels\linebreak 
+\pause
+\item combinations of different consistency levels\linebreak 
 \textit{strong consistency may be needed at certain times} 
 \end{itemize}
+\pause
 \begin{large}
 \ensuremath{\Rightarrow}
 \end{large}
-Some sort of formalism is needed to define semantics of Eventual Consistency
+some sort of formalism is needed to define semantics of Eventual Consistency
 \end{frame}
 
 \begin{frame}
@@ -123,16 +127,16 @@ Some sort of formalism is needed to define semantics of Eventual Consistency
 \begin{frame}
 \frametitle{Replicated Data Types}
 \begin{itemize}
-\item A replicated database stores \textbf{objects} \(\mathrm{Obj} = \{x,y,\dots\} \)
+\item a replicated database stores \textbf{objects} \(\mathrm{Obj} = \{x,y,\dots\} \)
 \pause
-\item Every object \(x \in \mathrm{Obj}\) has
+\item every object \(x \in \mathrm{Obj}\) has
 \begin{itemize}
 \item a \textbf{value} \(\in \mathrm{Val}\)
 \item a \textbf{type} type\((x) \leftrightarrow \tau \)
 \item \textbf{operations} \(\mathrm{Op}_{\mathrm{type}(x)}\) that a client can perform on it
 \pause
 \end{itemize}
-\item Two examples: Int Register \textbf{intreg}, Counter \textbf{ctr}
+\item two examples: Int Register \textbf{intreg}, Counter \textbf{ctr}
 \end{itemize}
 
 \begin{align*}
@@ -144,12 +148,12 @@ Some sort of formalism is needed to define semantics of Eventual Consistency
 \begin{frame}
 \frametitle{Replicated Data Types}
 \framesubtitle{Sequential Data Type Specification}
-In a \textit{strongly consistent system}, the semantics of a data type can be specified by a function \\
+in a \textit{strongly consistent system}, the semantics of a data type can be specified by a function: \\
 \begin{equation*}
 S_{\tau}\ : \mathrm{Op}_\tau^+ \rightarrow \mathrm{Val}
 \end{equation*}
 \pause
-Example:
+example:
 \begin{align*}
 S_{\mathrm{ctr}} \mathrm{(\sigma rd)} &= \mathrm{(number\ of\ inc\ operations\ in\ \sigma);} \\
 \onslide<3->{S_{\mathrm{intreg}} \mathrm{(\sigma rd)} &= k;\ \mathrm{if\ wr(0) \sigma = \sigma_1 wr(}k\mathrm{) \sigma_2\ and} \\
@@ -184,13 +188,13 @@ S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathr
 \begin{column}{5cm}
 \pause
 \begin{enumerate}
-\item Make concurrent operations commutative
+\item make concurrent operations commutative
 \pause
-\item Order concurrent operations
+\item order concurrent operations
 \pause
-\item Flag conflicts (let the user decide)
+\item flag conflicts (let the user decide)
 \pause
-\item Resolve conflicts semantically
+\item resolve conflicts semantically
 \end{enumerate}
 \end{column}
 \end{columns}
@@ -228,13 +232,13 @@ S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathr
 \begin{frame}
 \frametitle{Replicated Data Types}
 \framesubtitle{Replicated Data Type Specification}
-Example: Strategy \textbf{Make Concurrent Calls Commutative}
+example: Strategy \textbf{Make Concurrent Calls Commutative}
 \begin{align*}
 F_{\mathrm{ctr}} \mathrm{(inc}, V, \mathrm{vis, ar)} &= \bot; \\
 F_{\mathrm{ctr}} \mathrm{(rd}, V, \mathrm{vis, ar)} &= \mathrm{(the\ number\ of\ inc\ operations\ in\ } V);
 \end{align*}
 \pause
-Example: Strategy \textbf{Order Concurrent Operations}
+example: Strategy \textbf{Order Concurrent Operations}
 \begin{align*}
 F_{\mathrm{intreg}} \mathrm{(inc}, V, \mathrm{vis, ar)} &= S_{\mathrm{intreg}}(V^{\mathrm{ar}} f) \\
 \end{align*}
@@ -256,7 +260,7 @@ F_{\mathrm{intreg}} \mathrm{(inc}, V, \mathrm{vis, ar)} &= S_{\mathrm{intreg}}(V
 \end{itemize}
 \end{itemize}
 \pause
-Example:
+example:
 
 \begin{center}
 \(a = (1af3c, 17, [x.rd: k]);\ \mathrm{type(}x\mathrm{)} = \mathrm{intreg}\)
@@ -279,14 +283,14 @@ Example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Levels of Eventual Consistency}
 \begin{itemize}
-\item With these replicated data types we can define multiple forms of Eventual Consistency
+\item with these replicated data types we can define multiple forms of Eventual Consistency
 \begin{itemize}
-\item Basic Eventual Eonsistency
+\item Basic Eventual Consistency
 \item Session Guarantees
-\item Causality axioms
+\item Causality
 \end{itemize}
-\item Every form contains multiple axioms
-\item More axioms means stronger consistency
+\item every form contains multiple axioms
+\item more axioms mean stronger consistency
 \end{itemize}
 \end{frame}
 
@@ -294,10 +298,10 @@ Example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Basic Eventual Consistency Axioms}
 \begin{itemize}
-\item Axioms a database implementation has to enforce to offer \textbf{basic eventual consistency} 
+\item axioms a database implementation has to enforce to offer \textbf{basic eventual consistency} 
 \item Well Formedness Axioms
 \begin{itemize}
-\item SOwf: \textit{so is the union of transitive, irreflexive and total orders
+\item SOwf: \textbf{so} \textit{is the union of transitive, irreflexive and total orders
 on actions by each session}
 \item VISwf: \(\forall a,b. \text{ } a \xrightarrow[]{\text{ vis }}b \Rightarrow obj(a) = obj(b) \)
 \item ARwf: \(\forall a,b. \text{ } a \xrightarrow[]{\text{ ar }} b \Rightarrow obj(a) = obj(b) \)
@@ -309,7 +313,7 @@ on actions by each session}
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Basic Eventual Consistency Axioms}
 \begin{itemize}
-\item Data Type Axiom: \linebreak \(\forall a \in A. \text{ } \mathrm{rval}(a) = F \mathrm{_{type(a)}} (\mathrm{ctxt}(a))\)
+\item Data Type Axiom(RVAL): \linebreak \(\forall a \in A. \text{ } \mathrm{rval}(a) = F \mathrm{_{type(a)}} (\mathrm{ctxt}(a))\)
 \item Basic Eventual Consistency axioms:
 \begin{itemize}
 \item THINAIR: \linebreak \(\mathrm{so} \cup \mathrm{vis} \text{ } \mathrm{is} \text{ } \mathrm{anticyclic} \) 
@@ -328,13 +332,15 @@ TODO: Image explaining photo/noboss example from paper
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Session guarantees}
 \begin{itemize}
-\item With basic eventual consistency we still might be reading values out of order
-\item Axioms that formalise that all operation within a session keep the current context consistent
+\item with basic eventual consistency we still might be reading values out of order
+\item axioms that formalise that all operation within a session keep the current context consistent:
+\begin{itemize}
 \item Read Your Writes: \textit{An operation sees all previous operations
 by the same session}
 \item Writes Follow Reads in Visibility: \textit{Arbitration orders an
 operation after other operations previously seen by the same session}
 \item ... etc.
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -366,11 +372,11 @@ restricts the arbitration relation}
 \frametitle{Consistency Strengthening Interfaces}
 \framesubtitle{Consistency Annotations}
 \begin{itemize}
-\item Every \textbf{action} accepted by the database has to annotaed with a \textbf{consistency annotation}
+\item every \textbf{action} accepted by the database has to marked with a \textbf{consistency annotation}
 \begin{center} \((e,s,[x.f\mathrm{_{\mu}}:k]) \mu \in \{ORD, CSL\}\)\end{center} 
-\item Either \textbf{ordinary} or \textbf{causal}
-\item Ordinary actions behave like we defined previously
-\item Causal actions make all operations performed before the annotations visible to all previous actions
+\item either \textbf{ordinary} or \textbf{causal}
+\item ordinary actions behave like we defined previously
+\item causal actions make all operations performed before the annotations visible to all previous actions
 \end{itemize}
 \end{frame}
 
@@ -378,11 +384,12 @@ restricts the arbitration relation}
 \frametitle{Consistency Strengthening Interfaces}
 \framesubtitle{Fences}
 \begin{itemize}
-\item Instead of annotating every single action, a \textbf{fence} could be used
-\item A \textit{fence} is an \textbf{action} where the executing replica forces all its updates on every other replica in the cluster
+\item instead of annotating every single action, a \textbf{fence} can be used
+\item a \textit{fence} is an \textbf{action} where the executing replica forces all its updates on every other replica in the cluster
 \begin{center} action a =  \((e,s, \mathrm{fence})\)\end{center} 
-\item The execution of other actions is halted until all replicas acknowledge the receipt
-\item this violates the \textbf{A} in \textbf{CAP}
+\item the execution of other actions is halted until all replicas acknowledge the receipt
+\pause
+\item this violates the \textbf{A} in \textbf{CAP}!
 \end{itemize}
 \end{frame}
 
@@ -391,12 +398,12 @@ restricts the arbitration relation}
 \begin{frame}
 \frametitle{Conclusion}
 \begin{itemize}
-\item<pro@1-> The paper provides a way to \textbf{precisely specify eventually consistent systems} in a common notation
+\item<pro@1-> the paper provides a way to \textbf{precisely specify eventually consistent systems} in a common notation
 \item<pro@1-> \textbf{Every aspect of a system is covered}, from data types to client interaction
-\item<pro@1-> Specifications are \textbf{independent of implementation details}
-\item<con@1-> Still \textbf{very theoretical}, no tools available to map between specifications and implementation 
-\item<con@1-> The framework is \textbf{not suitable for programmers}, as it is very abstract and not easily understandable and applicable
-\item<con@1-> The Paper is still "work in progress"
+\item<pro@1-> specifications are \textbf{independent of implementation details}
+\item<con@1-> still \textbf{very theoretical}, no tools available to map between specifications and implementation 
+\item<con@1-> the framework is \textbf{not suitable for programmers}, as it is very abstract and not easily understandable and applicable
+\item<con@1-> the paper is still "work in progress"
 \end{itemize}
 \end{frame}
 
