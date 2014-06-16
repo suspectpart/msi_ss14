@@ -150,7 +150,7 @@ some sort of formalism is needed to define semantics of Eventual Consistency
 \framesubtitle{Sequential Data Type Specification}
 in a \textit{strongly consistent system}, the semantics of a data type can be specified by a function: \\
 \begin{equation*}
-S_{\tau}\ : \mathrm{Op}_\tau^+ \rightarrow \mathrm{Val}
+S_{\tau}: \mathrm{Op}_\tau^+ \rightarrow \mathrm{Val}
 \end{equation*}
 \pause
 example:
@@ -171,8 +171,8 @@ S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathr
 \begin{itemize}
 \item semantics of eventually consistent systems are harder to formalize
 \item concurrent operations on the same object happen on multiple replicas
-\item each replica executes operations immediately, updating other replicas later
-\item different implementation strategies for replicated data types
+\item each replica executes operations immediately, updating other replicas later \(\rightarrow\) \textbf{conflicts}
+\item different conflict resolution strategies for replicated data types
 \end{itemize}
 \end{frame}
 
@@ -205,9 +205,9 @@ S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathr
 \framesubtitle{Replicated Data Type Specification}
 \begin{itemize}
 \item \(S_{\tau}\) is not strong enough to formalize these strategies
-\item visibility and order of preceding operations have to be included
+\item \textbf{visibility} and \textbf{order} of preceding operations have to be included
 \pause
-\item \(F_\tau\): takes an \textbf{operation context} and returns a \textbf{value}
+\item \(F_\tau\): takes an \textbf{operation context} \(C\) and returns a \textbf{value}
 \end{itemize}
 
 \begin{center}
@@ -215,19 +215,17 @@ S_{\mathrm{intreg}} \mathrm{(\sigma\ wr(}k\mathrm{))} &= S_{\mathrm{ctr}} \mathr
 \end{center}
 \pause
 \begin{itemize}
-\item operation context \(C\) adds \textbf{visibility} and \textbf{arbitration relations} to preceding operations:
+\item \(C\) adds \textbf{visibility} and \textbf{arbitration relations} to preceding operations:
 \end{itemize}
 
 \begin{center}
 \(C = (f, V, \mathrm{ar}, \mathrm{vis})\) \\
 \pause
 \(u \xrightarrow{\mathrm{vis}} v, \mathrm{vis} \subseteq V \times V  \) \\
-\pause
 \(u \xrightarrow{\mathrm{ar}} v, \mathrm{ar} \subseteq V \times V  \)
 \end{center}
 
 \end{frame}
-
 
 \begin{frame}
 \frametitle{Replicated Data Types}
@@ -240,7 +238,8 @@ F_{\mathrm{ctr}} \mathrm{(rd}, V, \mathrm{vis, ar)} &= \mathrm{(the\ number\ of\
 \pause
 example: Strategy \textbf{Order Concurrent Operations}
 \begin{align*}
-F_{\mathrm{intreg}} \mathrm{(inc}, V, \mathrm{vis, ar)} &= S_{\mathrm{intreg}}(V^{\mathrm{ar}} f) \\
+F_{\mathrm{intreg}} (f, V, \mathrm{vis, ar)} &= S_{\mathrm{intreg}}(V^{\mathrm{ar}} f) \\
+&(S_{\tau}\ :\ \mathrm{Op}_\tau^+ \rightarrow \mathrm{Val})
 \end{align*}
 \end{frame}
 
@@ -250,7 +249,7 @@ F_{\mathrm{intreg}} \mathrm{(inc}, V, \mathrm{vis, ar)} &= S_{\mathrm{intreg}}(V
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Session and Action}
 \begin{itemize}
-\item clients wish to perform operations in a common context
+\item a single client may do several changes to the same object
 \item \textbf{sessions} provide a way to track client identity for operations
 \item an \textbf{action} is a tuple \((e,s,[x.f:k])\)
 \begin{itemize}
@@ -406,7 +405,7 @@ restricts the arbitration relation}
 \begin{frame}
 \frametitle{Conclusion}
 \begin{itemize}
-\item<pro@1-> the paper provides a way to \textbf{precisely specify eventually consistent systems} in a common notation
+\item<pro@1-> the paper provides a formal way to \textbf{precisely specify eventually consistent systems}
 \item<pro@1-> \textbf{Every aspect of a system is covered}, from data types to client interaction
 \item<pro@1-> specifications are \textbf{independent of implementation details}
 \item<con@1-> still \textbf{very theoretical}, no tools available to map between specifications and implementation 
