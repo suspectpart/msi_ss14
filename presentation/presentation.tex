@@ -313,7 +313,7 @@ example:
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Basic Eventual Consistency Axioms}
 \begin{itemize}
-\item axioms a database implementation has to enforce to offer \textbf{basic eventual consistency} 
+\item axioms a database implementation has to enforce to offer \textbf{Basic Eventual Consistency} 
 \item Well Formedness Axioms
 \begin{itemize}
 \item SOwf: \textbf{so} \textit{is the union of transitive, irreflexive and total orders
@@ -355,7 +355,7 @@ on actions by each session}
 \frametitle{Axiomatic Specification Framework}
 \framesubtitle{Session guarantees}
 \begin{itemize}
-\item with basic eventual consistency we still might be reading values out of order
+\item with Basic Eventual Consistency we still might be reading values out of order
 \item axioms that formalise that all operation within a session keep the current context consistent:
 \begin{itemize}
 \item Read Your Writes: \textit{An operation sees all previous operations
@@ -439,7 +439,7 @@ restricts the arbitration relation}
 \frametitle{Conclusion}
 \begin{itemize}
 \item<pro@1-> the paper provides a formal way to \textbf{precisely specify eventually consistent systems}
-\item<pro@1-> \textbf{Every aspect of a system is covered}, from data types to client interaction
+\item<pro@1-> \textbf{every aspect of a system is covered}, from data types to client interaction
 \item<pro@1-> specifications are \textbf{independent of implementation details}
 \item<con@1-> still \textbf{very theoretical}, no tools available to map between specifications and implementation 
 \item<con@1-> the framework is \textbf{not suitable for programmers}, as it is very abstract and not easily understandable and applicable
